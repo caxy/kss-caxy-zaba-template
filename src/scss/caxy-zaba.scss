@@ -1,0 +1,216 @@
+@charset "UTF-8";
+
+// ------------------------------------------------------------------------------
+//   Variables - Colors, Fonts, etc.
+// ------------------------------------------------------------------------------
+
+$kss-colors-background: #fff;
+$kss-colors-background-darker: darken($kss-colors-background, 5%);
+
+$kss-colors-foreground: #444;
+$kss-colors-heading: #111;
+$kss-colors-quotes: #666;
+$kss-colors-border: #CCC;
+
+$kss-colors-link: #440000;
+$kss-colors-link-visited: #330000;
+$kss-colors-link-hover: #df1e36;
+$kss-colors-link-active: #1F5363;
+
+$kss-font-size: 16px;
+$kss-font-size-small: 12px;
+$kss-spacing: $kss-font-size * 1.5;
+
+$kss-toggle-height: $kss-font-size-small * 3;
+$kss-sidebar-width: 18rem;
+
+$screen-medium: 600px;
+
+$kss-spacing: $kss-font-size*1.5;
+
+@import 'https://fonts.googleapis.com/css?family=Archivo+Narrow|Open+Sans:300';
+
+@font-face {
+  font-family: 'KSSFontAwesome';
+  src: url("../fonts/fontawesome-webfont.eot");
+  src: url("../fonts/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/fontawesome-webfont.woff") format("woff"), url("../fonts/fontawesome-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+$kss-font-titles: 'Archivo Narrow', Arial, sans-serif;
+$kss-font-body: 'Open Sans', Arial, sans-serif;
+$kss-icon-font: 'KSSFontAwesome';
+$kss-font-code: Menlo, 'Ubuntu Mono', 'Lucida Console', 'Courier New', Courier, monospace;
+
+
+
+
+
+// ------------------------------------------------------------------------------
+//   External Sass Files
+// ------------------------------------------------------------------------------
+
+@import 'normalize-css/normalize';
+@import 'mixins-flexbox';
+@import 'mixins-styleguide';
+@import 'kss';
+
+
+
+
+
+// ------------------------------------------------------------------------------
+//   Color Swatches
+// ------------------------------------------------------------------------------
+
+.has-swatches {
+
+  @include flexbox;
+  @include justify-content(space-between);
+  @include flex-wrap(wrap);
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  .kss-swatch {
+    @include flexbox;
+    @include flex-direction(column);
+    @include justify-content(space-between);
+    flex: 1;
+    margin: 1rem 0;
+  }
+
+}
+
+
+
+.kss-swatch {
+
+  padding: 0;
+  text-align: center;
+  font-size: 16px;
+
+  .dot {
+    display: block;
+    height: 6rem;
+    width: 6rem;
+    margin: $kss-spacing auto;
+    border-radius: 100%;
+  }
+
+  small {
+    padding: 0 1rem;
+  }
+
+  &::before,
+  &::after {
+    visibility: hidden;
+  }
+
+}
+
+
+
+
+
+// ------------------------------------------------------------------------------
+//   Zaba Theme Specific CSS
+// ------------------------------------------------------------------------------
+
+.navigation-site .menu ul {
+  @include flexbox();
+  @include flex-flow(row nowrap);
+  margin: $kss-spacing auto;
+  max-width: 1600px;
+  width: 100%;
+  background: $kss-colors-background-darker;
+  border-top: 1px dotted $kss-colors-border;
+  position: absolute;
+  left: 0;
+  top: 100%;
+}
+
+
+
+
+
+
+.table-of-contents {
+
+  @include flexbox();
+  @include flex-direction(row);
+  @include flex-wrap(wrap);
+  list-style-type: none;
+
+  & li {
+    flex: 0 0 25%;
+    margin: $kss-spacing/2 0;
+    padding: 0;
+  }
+}
+
+
+
+
+
+.example__title {
+  font-size: $kss-font-size;
+  font-weight: 400;
+  border-bottom: 1px solid $kss-colors-border;
+  margin-top: $kss-spacing*2;
+}
+
+
+
+
+
+.kss-style {
+  code,
+  pre {
+    background: none;
+    li {
+      margin: 0;
+    }
+  }
+
+}
+
+
+
+
+// Full Page
+//
+// For cases where a full page with no styleguide information should be displayed.
+// TODO: Sort out how to load a different handlebars template with no styleguide CSS in place instead
+
+#kss-node.full-page {
+
+  .kss-style {
+    display: none;
+  }
+
+  .kss-main,
+  .kss-main.has-status-toggle {
+    margin: 0;
+    border: none;
+    padding: 0;
+  }
+
+  .kss-section,
+  .kss-modifier__wrapper,
+  .kss-modifier__example {
+    margin: 0;
+    padding: 0;
+  }
+
+  #width-marker,
+  .kss-status-bar {
+    display: none;
+  }
+}
+
+
+
+
+// Any styleguide-specific documentation or comments should go here.
