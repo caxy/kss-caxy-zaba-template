@@ -110,7 +110,7 @@ class KssBuilderHandlebars extends KssBuilderBaseHandlebars {
     const fs = require('fs-extra');
     const path = require('path');
 
-    const cssTarget = __dirname + '/' + cssFile;
+    const cssTarget = path.resolve(__dirname + '/scss/caxy-zaba.scss');
 
     if (!this.options.sass.files.includes(cssTarget)) {
       this.options.sass.files.push(cssTarget);
@@ -124,6 +124,7 @@ class KssBuilderHandlebars extends KssBuilderBaseHandlebars {
       }
 
       const cssFile = `kss-assets/styles/${path.basename(sourceFile).replace(/\.(sass|scss)$/, '.css')}`;
+      const outputPath = this.options.destination + '/' + cssFile;
       // Add this css file to the kss options, to be included in the template.
       if (!this.options.css.includes(cssFile)) {
         this.options.css.push(cssFile);
@@ -139,7 +140,7 @@ class KssBuilderHandlebars extends KssBuilderBaseHandlebars {
         includePaths: includePaths
       });
 
-      fs.outputFile(cssTarget, sassResult.css, function (err) {
+      fs.outputFile(outputPath, sassResult.css, function (err) {
         if (err) {
           console.error(err);
         }
