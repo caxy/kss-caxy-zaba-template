@@ -1,6 +1,6 @@
 {
   "name": "kss-caxy-zaba-template",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A builder for kss-node using Caxy's Zaba theme.",
   "main": "builder.js",
   "scripts": {
