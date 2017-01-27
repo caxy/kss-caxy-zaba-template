@@ -35,8 +35,6 @@ try {
   KssBuilderBaseHandlebars = require('../front-end-starter-kit/node_modules/kss/builder/base/handlebars');
 }
 
-console.log('OUTSIDE BUILDER');
-
 /**
  * A kss-node builder that takes input files and builds a style guide using
  * Handlebars templates.
@@ -118,8 +116,6 @@ class KssBuilderHandlebars extends KssBuilderBaseHandlebars {
     if (!this.options.sass.files.includes(cssTarget)) {
       this.options.sass.files.push(cssTarget);
     }
-
-    console.log(cssTarget);
 
     for (let i = 0; i < this.options.sass.files.length; i++) {
       const sourceFile = this.options.sass.files[i];
