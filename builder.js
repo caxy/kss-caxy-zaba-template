@@ -44,7 +44,6 @@ class KssBuilderHandlebars extends KssBuilderBaseHandlebars {
    * Create a builder object.
    */
   constructor() {
-    console.log('IN BUILDER CONSTRUCTOR');
     // First call the constructor of KssBuilderBaseHandlebars.
     super();
 
@@ -114,7 +113,7 @@ class KssBuilderHandlebars extends KssBuilderBaseHandlebars {
     const cssTarget = path.resolve(__dirname + '/scss/caxy-zaba.scss');
 
     if (!this.options.sass.files.includes(cssTarget)) {
-      this.options.sass.files.push(cssTarget);
+      this.options.sass.files.unshift(cssTarget);
     }
 
     for (let i = 0; i < this.options.sass.files.length; i++) {
@@ -135,10 +134,23 @@ class KssBuilderHandlebars extends KssBuilderBaseHandlebars {
           ? this.options.sass.includePaths.concat(['node_modules/', __dirname + '/scss'])
           : this.options.sass.includePaths;
 
+      // Set default importer for sass if not set.
+      if (!this.options.sass.importer) {
+        this.options.sass.importer = function (url, prev, done) {
+          // Resolve imports starting with ~ to the node_modules dir.
+          if (url[0] === '~') {
+            url = path.resolve('node_modules', url.substr(1));
+          }
+
+          return { file: url };
+        }
+      }
+
       // Run SASS to generate the CSS.
       const sassResult = sass.renderSync({
         file: sourceFile,
-        includePaths: includePaths
+        includePaths: includePaths,
+        importer: this.options.sass.importer
       });
 
       fs.outputFile(outputPath, sassResult.css, function (err) {
