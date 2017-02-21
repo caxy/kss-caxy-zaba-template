@@ -110,12 +110,13 @@ class KssBuilderHandlebars extends KssBuilderBaseHandlebars {
     const fs = require('fs-extra');
     const path = require('path');
 
+    // Prepend the caxy-zaba.scss file to array of sass files to compile.
     const cssTarget = path.resolve(__dirname + '/scss/caxy-zaba.scss');
-
     if (!this.options.sass.files.includes(cssTarget)) {
       this.options.sass.files.unshift(cssTarget);
     }
 
+    // Compiles the sass files passed in from the options and adds them to the css array for kss-node.
     for (let i = 0; i < this.options.sass.files.length; i++) {
       const sourceFile = this.options.sass.files[i];
 

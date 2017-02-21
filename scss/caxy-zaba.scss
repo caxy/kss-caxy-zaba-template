@@ -53,11 +53,9 @@ $kss-font-code: Menlo, 'Ubuntu Mono', 'Lucida Console', 'Courier New', Courier, 
 //   External Sass Files
 // ------------------------------------------------------------------------------
 
-@import 'normalize';
+@import '~normalize-css/normalize.css';
 @import 'mixins-flexbox';
 @import 'mixins-styleguide';
-
-@import '../project-assets/project-specific';
 @import 'kss';
 
 
