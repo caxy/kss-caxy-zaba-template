@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "fs-extra": "^2.0.0",
-    "node-sass": "^4.3.0",
+    "node-sass": "^7.0.0",
     "path": "^0.12.7"
   },
   "repository": "\"git+https://github.com/caxy/front-end-starter-kit.git\"",
